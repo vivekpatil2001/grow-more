@@ -1,15 +1,21 @@
 import React, { useEffect, useState } from "react";
+import Aos from 'aos'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
 import { faBullhorn, faSackDollar, faIdCard, faRecycle, faDollarSign, faWallet } from '@fortawesome/free-solid-svg-icons';
-// import './Dashboard.css'; // Assuming you will create a Dashboard.css for custom styles
+import './Dashboard.css'; // Assuming you will create a Dashboard.css for custom styles
 
 function Dashboard() {
+
+  
+  
   const [data, setData] = useState([]);
   const [url, setUrl] = useState('');
   const [user, setUser] = useState('');
   const [balance, setBalance] = useState('');
   const [profit, setProfit] = useState('');
   const [reffer, setReffer] = useState('');
+
+  
   
   useEffect(() => {
     const getUserData = async () => {
@@ -59,60 +65,65 @@ function Dashboard() {
     return `${h}:${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
   };
 
+  useEffect(() => {
+    Aos.init();
+  }, []);
+  
   return (
-    <div className="bg-white text-black dashboard-container">
-      <div className="container-fluid py-4">
+    <div className="bg-dark text-white">
+      <div className="container-fluid py-5  ">
         {/* Announcement Box */}
-        <div className="row justify-content-center mb-4">
+        <div className="row justify-content-center mb-5 ">
           <div className="col-lg-10">
-            <div className="announcement-box border border-secondary rounded h3 p-2">
-              <strong>Announcement:</strong>
-              <p className="p-4">
+            <div className="announcement-box rounded"  data-aos="zoom-in-down" >
+              <h2>Announcement:</h2>
+              <p className="py-2">
                 This is an important announcement for all users.
               </p>
-              <FontAwesomeIcon icon={faBullhorn} className="announcement-icon"/>
+              <FontAwesomeIcon icon={faBullhorn} className="announcement-icon fs-3"/>
             </div>
           </div>
         </div>
         
         {/* Main Content */}
-        <div className="row mb-4">
+        <div className="row mb-4 mx-4">
           <div className="col-md-6 mb-4">
-            <div className="d-flex justify-content-between align-items-center border shadow rounded p-3 mb-2 balance-box">
-              <p className="font-weight-semibold mb-0">rPIN Balance</p>
-              <div className="d-flex align-items-center bg-success text-white rounded p-2">
-                <p className="mb-0 mr-2">Total</p>
+            <div className="d-flex justify-content-between align-items-center custom-border rounded "  
+          >
+              <p className="font-weight-semibold mb-0 ">rPIN Balance</p>
+              <div className="d-flex align-items-center bg-primary text-black rounded p-2 ">
+                <p className="mb-0 ">Total</p>
                 <p className="mb-0">{balance}</p>
               </div>
             </div>
             <div className="text-center mb-2">
-              <p className="font-weight-medium mb-1">Create ID will start in</p>
-              <p>{formatTime(seconds)}</p>
+              <p className="font-weight-medium my-2">Create ID will start in {formatTime(seconds)}</p>
+            
             </div>
-            <div className="d-flex justify-content-between align-items-center border shadow bg-success-light rounded p-3 created-box">
+            <div className="d-flex justify-content-between align-items-center custom-border   bg-success-light rounded ">
               <p className="font-weight-semibold mb-0">IDs Created Today</p>
               <p className="mb-0">0</p>
             </div>
           </div>
-          <div className="col-md-6 mb-4">
-            <div className="d-flex justify-content-between align-items-center border shadow bg-success-light rounded p-3 mb-2 referral-box">
+          <div className="col-md-6 mb-4 ">
+            <div className="d-flex justify-content-between align-items-center custom-border mb-4  bg-success-light rounded referral-box">
               <p className="font-weight-semibold mb-0">Total Referrals</p>
               <p className="mb-0">{reffer}</p>
             </div>
-            <div className="d-flex justify-content-between align-items-center border shadow bg-success-light rounded p-3 income-box">
+            <div className="d-flex justify-content-between align-items-center custom-border mt-4   bg-success-light rounded   p-3 income-box">
               <div className="d-flex align-items-center">
                 <FontAwesomeIcon icon={faWallet} className="mr-2"/>
-                <p className="font-weight-semibold mb-0">Total Income</p>
+                <p className="font-weight-semibold mb-0 ms-2">Total Income</p>
               </div>
               <p className="mb-0">₹{profit}</p>
             </div>
           </div>
         </div>
-        <div>
-          <p className="font-weight-medium mb-2">My Referral Code</p>
-          <div className="d-flex justify-content-between align-items-center border bg-success-light rounded p-2 referral-code-box">
+        <div className="mx-4">
+          <p className="font-weight-medium mb-2 ">My Referral Code</p>
+          <div className="d-flex justify-content-between align-items-center custom-border bg-success-light rounded my-3 referral-code-box">
             <p className="mb-0 ml-2">{referralCode}</p>
-            <button className="btn btn-success text-white">Copy</button>
+            <button className="btn bg-primary text-black">Copy</button>
           </div>
         </div>
         <div className="table-responsive mt-4">
