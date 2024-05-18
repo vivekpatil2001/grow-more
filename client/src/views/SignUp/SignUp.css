@@ -1,6 +1,4 @@
-body {
-    /* overflow-y: hidden; */
-}
+
 /* 
 section {
     background: url('./bg.jpeg') no-repeat;
@@ -22,9 +20,10 @@ section {
 
 form {
     /* background-color: black; */
-    height: 50px;
+    /* height: 50px;
     width: auto;
-    /* opacity: 0.7; */}
+    opacity: 0.7; */
+} 
 
     .main h1{
     font-size: 40px;
@@ -48,6 +47,5 @@ form {
 
 
 .main {
-    height: 850px;
-    width: auto;
+    height: 92vh;
 }

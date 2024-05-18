@@ -1,18 +1,5 @@
 <?php
-session_start();
-error_reporting(E_ALL);
-ini_set('display_errors', 1);
-header("Access-Control-Allow-Origin:*");
-header("Access-Control-Allow-Headers:*");
-header("Access-Control-Allow-Methods:*");
-
-$db_conn = mysqli_connect("localhost", "root", "", "growmore");
-
-if ($db_conn === false) {
-
-  die("ERROR: Could Not Connect" . mysqli_connect_error());
-
-}
+require('./config.php');
 
 
 
@@ -29,7 +16,7 @@ switch ($method) {
     if (mysqli_num_rows($cmpbal) > 0) {
       $bal=0;
       while ($evr = mysqli_fetch_array($cmpbal)) {
-      $bal=$bal+ (($evr['balance']-$evr['profit'])*65)/100;
+      $bal=$bal+ (($evr['balance']-$evr['profit'])*25)/100;
       }
     }
   //    echo $bal;
