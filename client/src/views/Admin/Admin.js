@@ -34,9 +34,9 @@ function Admin() {
     const getUserData = async () => {
       const storedData = localStorage.getItem('user');
       const formData=JSON.parse(storedData)[1]
-      const reqData = await fetch("http://localhost/bigbull/api/admin.php/"+formData);
+      const reqData = await fetch("http://localhost/growmore/admin.php/"+formData);
       const resData = await reqData.json();
-      setAdmin(resData[0].username);
+      setAdmin(resData[0].email);
       setCmpbal(resData[0].cmp);
       setData(resData);
     };
@@ -44,13 +44,13 @@ function Admin() {
   }, []);
   const handleSubmit = async (e) => {
     e.preventDefault();
-    const res = await fetch("http://localhost/bigbull/api/client.php/" + fet);
+    const res = await fetch("http://localhost/growmore/client.php/" + fet);
     const pop = await res.json();
     setReffer(pop.length - 1);
     setUrl(pop[0].user_id);
     setBalance(pop[0].balance);
     setProfit(pop[0].profit);
-    setUser(pop[0].username);
+    setUser(pop[0].email);
     setResult(pop[1].result);
     setClient(pop);
   };
@@ -60,80 +60,98 @@ function Admin() {
     setShow(true);
   }
   return (
-    <div className="container text-center">
-      <h2 className="text-danger ">Admin Panel</h2>
+    <div className="container text-center ">
+      <h2 className="text-white ">Admin Panel</h2>
 
       <Modal show={show} fullscreen={fullscreen} onHide={() => setShow(false)}>
-        <Modal.Header closeButton className="bg-danger text-dark">
+        <Modal.Header closeButton className="text-dark navi">
           <Modal.Title>{user} Profile Details</Modal.Title>
         </Modal.Header>
-        <Modal.Body className="bg-dark">
+        <Modal.Body className="">
           <Container className="mt-5">
-            <h2 className="text-danger m-5"> Dashboard</h2>
+            <h2 className="text-dark m-5"> Dashboard</h2>
             <div className="d-flex flex-column p-sm-2  me-3 align-items-center ">
-              <FaCircleUser className="fs-1 text-white mx-4" />
-              <h4 className="text-danger">{user}</h4>
+              <FaCircleUser className="fs-1 text-dark mx-4" />
+              <h4 className="text-dark">{user}</h4>
             </div>
-            <Row className=" justify-content-md-around text-white g-3  d-flex flex-column flex-md-row  ">
-              <Col xs lg="3" className="bg-dark p-4 rounded-3 mx-1">
-                <Row className="g-2">
+            <Row className=" justify-content-md-around text-white g-3 d-flex flex-column flex-md-row ">
+              <Col xs lg="3" className=" p-4 rounded-3 mx-1 navi" >
+                <Row className="g-2 justify-content-center text-center ">
                   <Col
-                    variant="outline-danger"
+                    variant="outline-dark"
                     className=" mx-2 col-3 align-content-center  me-3 justify-items-center rounded-circle "
                   >
-                    <Button variant="outline-danger">
+                    <Button variant="outline-dark">
                       {" "}
-                      <FaUserShield className="fs-1" />{" "}
+                      <FaUserShield className="fs-3" />{" "}
                     </Button>
                   </Col>
                   <Col>
-                    <p>
-                      User ID:<h4 className="text-danger w-25">{url}</h4>
+                    <p className="text-dark">
+                      User ID:<h4 className="text-dark w-25 mx-4 ">{url}</h4>
                     </p>
                   </Col>
                 </Row>
               </Col>
              
-              <Col xs lg="3" className="bg-dark mx-1 p-4 rounded-3 ">
-                <Row>
+              <Col xs lg="3" className=" mx-1 p-4 rounded-3 navi ">
+                <Row >
                   <Col
-                    variant="outline-danger"
+                    variant="outline-dark"
                     className=" col-3  mx-2 align-content-center me-3 justify-items-center rounded-circle "
                   >
-                    <Button variant="outline-danger">
+                    <Button variant="outline-dark">
                       {" "}
-                      <HiUserGroup className="fs-1" />{" "}
+                      <HiUserGroup className="fs-3" />{" "}
                     </Button>
                   </Col>
                   <Col>
-                    <p>
+                    <p className="text-dark">
                       Total Reffer:{" "}
                       {
                         //Check if message failed
                         result == undefined ? (
-                          <h4 className="text-danger">{reffer}</h4>
+                          <h4 className="text-dark">{reffer}</h4>
                         ) : (
-                          <h4 className="text-danger">{result}</h4>
+                          <h4 className="text-dark">{result}</h4>
                         )
                       }
                     </p>
                   </Col>
                 </Row>
               </Col>
-              <Col xs lg="3" className="bg-dark mx-1 p-4 rounded-3 ">
+              <Col xs lg="3" className=" mx-1 p-4 rounded-3 navi ">
                 <Row>
                   <Col
-                    variant="outline-danger"
+                    variant="outline-dark"
                     className=" col-3  mx-2 align-content-center me-3 justify-items-center rounded-circle "
                   >
-                    <Button variant="outline-danger">
+                    <Button variant="outline-dark">
                       {" "}
-                      <MdAccountBalanceWallet className="fs-1" />{" "}
+                      <MdAccountBalanceWallet className="fs-3" />{" "}
                     </Button>
                   </Col>
                   <Col>
-                    <p>
-                      Total Profit:<h4 className="text-danger">{profit}₹</h4>
+                    <p className="text-dark">
+                      Total Balance:<h4 className="text-dark">{balance}₹</h4>
+                    </p>
+                  </Col>
+                </Row>
+              </Col>
+              <Col xs lg="3" className=" mx-1 p-4 rounded-3 navi ">
+                <Row>
+                  <Col
+                    variant="outline-dark"
+                    className=" col-3  mx-2 align-content-center me-3 justify-items-center rounded-circle "
+                  >
+                    <Button variant="outline-dark">
+                      {" "}
+                      <MdAccountBalanceWallet className="fs-3" />{" "}
+                    </Button>
+                  </Col>
+                  <Col>
+                    <p className="text-dark">
+                      Total Profit:<h4 className="text-dark">{profit}₹</h4>
                     </p>
                   </Col>
                 </Row>
@@ -141,25 +159,27 @@ function Admin() {
             </Row>
           </Container>
           <div className="container">
-            <h2 className="text-danger mx-5">Reffer to</h2>
-            <div className="overflow-scroll">
+            <h2 className="text-dark mx-5">Reffer to</h2>
+            <div>
               <div className="overflow-scroll overflow-y-scroll  fs-4 container">
-                <table className="table text-light bg-dark mt-4 ">
+                <table className="table text-dark  mt-4 ">
                   <thead className="bg-Red">
                     <tr>
                       <th scope="col">User_Id</th>
-                      <th scope="col">Username</th>
+                      <th scope="col">Email</th>
                       <th scope="col">Plan</th>
-                      <th scope="col">Date</th>
+                      
                     </tr>
                   </thead>
                   <tbody>
                     {client.slice(1).map((row, index) => (
                       <tr key={index}>
-                        <td>{row.user_id}</td>
-                        <td>{row.username}</td>
+                        <td>
+                        {row.user_id}       
+                        </td>
+                        <td>{row.email}</td>
                         <td>{row.plan}</td>
-                        <td>{row.date}</td>
+                  
                       </tr>
                     ))}
                   </tbody>
@@ -172,7 +192,7 @@ function Admin() {
 
       <div>
         <div>
-          <Navbar expand="lg" className="bg-body-tertiary">
+          <Navbar expand="lg" className="bg-body-tertiary navi">
             <Container fluid className="d-flex justify-content-around ">
               <Nav
                 className=" my-2 my-lg-0"
@@ -181,24 +201,24 @@ function Admin() {
               >
                 <div className="d-flex flex-column align-items-end p-sm-2 ">
                   <Nav.Link href="#action1">
-                    <FaCircleUser className="fs-1 text-white mx-4" />
-                    <h4 className="text-danger">{admin}</h4>
+                    <FaCircleUser className="fs-1  text-dark mx-4 border-2 border border-success rounded-circle" />
+                    <h4 className="text-dark">{admin}</h4>
                   </Nav.Link>
                 </div>
               </Nav>
 
               <Row className="g-2">
-                {/* <Col
-                  variant="outline-danger"
+                <Col
+                  variant="outline-dark"
                   className=" me-1  col-3 align-content-center justify-items-center rounded-circle "
                 >
-                  <Button variant="outline-danger" className="mx-5">
+                  <Button variant="outline-dark" className="mx-5">
                     {" "}
-                  <MdAccountBalanceWallet className="fs-1" />{" "}
+                  <MdAccountBalanceWallet className="fs-4" />{" "}
                   </Button>
-                </Col> */}
+                </Col>
                 <Col>
-                  <p className="text-light mb-0 ">Company Balance:  </p><h4 className="text-danger">{cmpbal}₹</h4>   
+                  <p className="text-success mb-0 ">Company Balance:  </p><h4 className="text-dark">{cmpbal}₹</h4>   
                 </Col>
               </Row>
 {/* 
@@ -209,23 +229,23 @@ function Admin() {
                   className="me-2"
                   aria-label="Search"
                 />
-                <Button variant="outline-danger">Search</Button>
+                <Button variant="outline-dark">Search</Button>
               </Form> */}
             </Container>
           </Navbar>
         </div>
 
-        <div className="overflow-scroll overflow-y-scroll  fs-4 container">
-          <table className="table text-light bg-dark mt-4 overflow-scroll overflow-y-scroll text-start  ">
+        <div className="overflow-scroll overflow-y-scroll  fs-4 container navi mt-5">
+          <table className="table text-dark mt-4 overflow-scroll overflow-y-scroll text-start  ">
             <thead className="bg-Red">
               <tr>
                 <th scope="col">User Id</th>
-                <th scope="col">User Name</th>
+                <th scope="col">User Email</th>
                 <th scope="col">Plan</th>
                 <th scope="col">Amount</th>
                 <th scope="col">Profit</th>
                 <th scope="col">Referral By</th>
-                <th scope="col">Date</th>
+            
               </tr>
             </thead>
             <tbody>
@@ -235,7 +255,7 @@ function Admin() {
                     <form onSubmit={handleSubmit}>
                       <button
                         type="submit"
-                        className="bg-dark border-0 "
+                        className="navi border-0 "
                         onClick={() => {
                           setShow(true);
                           setFet(row.user_id);
@@ -245,19 +265,17 @@ function Admin() {
                           src={Profile}
                           alt=""
                           width={"8%"}
-                          className="me-2 rounded-circle border-2 border border-danger btn p-0"
+                          className="me-2 rounded-circle border-2 border border-success btn p-0"
                         ></img>
                         {row.user_id}
                       </button>
                     </form>
                   </td>
-                  <td>{row.username}</td>
+                  <td>{row.email}</td>
                   <td>{row.plan}</td>
-
                   <td>{row.balance}</td>
                   <td>{row.profit}</td>
                   <td>{row.reffer}</td>
-                  <td>{row.date}</td>
                 </tr>
               ))}
             </tbody>
