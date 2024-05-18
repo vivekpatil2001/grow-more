@@ -1,0 +1,28 @@
+/* *{
+background-color: black;
+color: white;
+} */
+
+.announcement-box{
+    height: 180px;
+    width: 420px;
+    margin: 10px auto;
+    border: 2px solid blueviolet;
+    box-shadow: 1px 1px 5px  rgb(175, 2, 160) ;
+    padding: 20px;
+}
+
+.announcement-box:hover{
+    border: 2px solid rgb(175, 2, 160);
+}
+.custom-border {
+    border: 1.5px solid blueviolet;
+    height: 70px;
+    padding: 0px 20px;
+    box-shadow: 1px 1px 5px  rgb(175, 2, 160) ;
+}
+
+.custom-border:hover{
+     
+    border: none;
+}
