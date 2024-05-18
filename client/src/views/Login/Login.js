@@ -1,13 +1,13 @@
 import axios from 'axios';
 import { useState } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
-
+import Button from 'react-bootstrap/Button';
 import Dashboard from '../Dashboard/Dashboard';
 // import Payment from '../../Razorpay/Payment';
 import Admin from '../Admin/Admin';
 // import PaymentSuccess from '../../Razorpay/PaymentSuccess';
 import { useNavigate } from 'react-router-dom';
-
+import '../SignUp/SignUp.css'
 const Home = () => {
   const navigate = useNavigate(); 
   const [message, setMessage] = useState('');
@@ -24,24 +24,24 @@ const Home = () => {
   const handleSubmit = async(e) => {
     e.preventDefault();
     console.log(formvalue); 
-    const formData = { email: formvalue.email, password: formvalue.password, referral: formvalue.referral };
+    const formData = { email: formvalue.email, password: formvalue.password };
     const res = await axios.post("http://localhost/growmore/login.php", formData);
     setMessage(res.data['message']);
     if(res.data.success){ 
       localStorage.setItem('user', JSON.stringify(res.data['data']));
       setTimeout(() => {
         navigate('/dashboard');
-        window.location.reload();
+        // window.location.reload();
       }, 900);
     }
   };
 
   return (
-    <div className="container py-5 mt-5  ">
+    <div className="container mt-5 main  ">
       <div className="row justify-content-center">
         <div className="col-md-6 col-lg-4 bg-light p-4 p-5 shadow-sm"> {/* Change the bg-white to bg-light or any other class for different background color */}
           <div className="text-center mb-4 ">
-            <h3 className="font-weight-bold mb-3">Registration</h3>
+            <h3 className="font-weight-bold mb-3">Login</h3>
             <p className="text-muted">Welcome! Please enter your details.</p>
             <h6 className="text-danger">{message}</h6>
           </div>
@@ -70,17 +70,6 @@ const Home = () => {
                 className="form-control"
               />
             </div>
-            <div className="form-group mb-3">
-              <input
-                type="text"
-                id="referral"
-                name="referral"
-                placeholder="Referral (optional)"
-                className="form-control"
-                value={formvalue.referral}
-                onChange={handleInput}
-              />
-            </div>
 
             <div className="form-check mb-3">
               <input type="checkbox" id="remember" name="remember" className="form-check-input" required />
@@ -89,7 +78,9 @@ const Home = () => {
               </label>
             </div>
 
-            <button type="submit" className="btn btn-dark w-100 mb-3">Login</button>
+            <div className='d-flex w-100 justify-content-center '>
+            <Button type='submit' variant="outline-success" className='w-25 p-1 '>LogIn</Button>{' '}
+            </div>
 
             <p className="text-muted text-center">
               By creating an account you agree to our <br />

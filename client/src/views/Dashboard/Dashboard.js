@@ -1,13 +1,14 @@
 import React, { useEffect, useState } from "react";
 import Aos from 'aos'
 import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
-import { faBullhorn, faSackDollar, faIdCard, faRecycle, faDollarSign, faWallet } from '@fortawesome/free-solid-svg-icons';
+//import { faBullhorn, faSackDollar, faIdCard, faRecycle, faDollarSign, faWallet } from '@fortawesome/free-solid-svg-icons';
+import { FaCircleUser } from "react-icons/fa6";
+import { FaUserShield } from "react-icons/fa";
+import { HiUserGroup } from "react-icons/hi2";
+import { MdAccountBalanceWallet } from "react-icons/md";
 import './Dashboard.css'; // Assuming you will create a Dashboard.css for custom styles
-
+import anmt from './announcement.png'
 function Dashboard() {
-
-  
-  
   const [data, setData] = useState([]);
   const [url, setUrl] = useState('');
   const [user, setUser] = useState('');
@@ -47,7 +48,6 @@ function Dashboard() {
     getUserData();
   }, []);
   
-  const referralCode = "ABC123XYZ";
   const [seconds, setSeconds] = useState(3600); // Adjusted initial value for testing
 
   useEffect(() => {
@@ -76,11 +76,12 @@ function Dashboard() {
         <div className="row justify-content-center mb-5 ">
           <div className="col-lg-10">
             <div className="announcement-box rounded"  data-aos="zoom-in-down" >
-              <h2>Announcement:</h2>
+              <h2>Announcement:<img src={anmt} className="mx-4" height={'50vw'}></img></h2>
+              
               <p className="py-2">
                 This is an important announcement for all users.
               </p>
-              <FontAwesomeIcon icon={faBullhorn} className="announcement-icon fs-3"/>
+              {/* <FontAwesomeIcon icon={faBullhorn} className="announcement-icon fs-3"/> */}
             </div>
           </div>
         </div>
@@ -90,9 +91,8 @@ function Dashboard() {
           <div className="col-md-6 mb-4">
             <div className="d-flex justify-content-between align-items-center custom-border rounded "  
           >
-              <p className="font-weight-semibold mb-0 ">rPIN Balance</p>
-              <div className="d-flex align-items-center bg-primary text-black rounded p-2 ">
-                <p className="mb-0 ">Total</p>
+              <p className="font-weight-semibold mb-0 "><MdAccountBalanceWallet className="fs-2 m-3 ico"/>  rPIN Balance</p>
+              <div className="d-flex align-items-center text-white rounded p-2 ">
                 <p className="mb-0">{balance}</p>
               </div>
             </div>
@@ -100,47 +100,51 @@ function Dashboard() {
               <p className="font-weight-medium my-2">Create ID will start in {formatTime(seconds)}</p>
             
             </div>
-            <div className="d-flex justify-content-between align-items-center custom-border   bg-success-light rounded ">
-              <p className="font-weight-semibold mb-0">IDs Created Today</p>
-              <p className="mb-0">0</p>
+            <div className="d-flex justify-content-between align-items-center custom-border mb-5  bg-success-light rounded ">
+              <p className="font-weight-semibold mb-0"> <FaCircleUser className="fs-2 m-3 ico"/>User</p>
+              <p className="mb-0">{user}</p>
             </div>
+       
           </div>
           <div className="col-md-6 mb-4 ">
-            <div className="d-flex justify-content-between align-items-center custom-border mb-4  bg-success-light rounded referral-box">
-              <p className="font-weight-semibold mb-0">Total Referrals</p>
+            <div className="d-flex justify-content-between align-items-center custom-border mb-4 bg-success-light rounded referral-box">
+              <p className="font-weight-semibold mb-0"><HiUserGroup className="fs-2 m-3 ico"/>Total Referrals</p>
               <p className="mb-0">{reffer}</p>
             </div>
-            <div className="d-flex justify-content-between align-items-center custom-border mt-4   bg-success-light rounded   p-3 income-box">
+            <div className="d-flex justify-content-between align-items-center custom-border mt-5 bg-success-light rounded   p-3 income-box">
               <div className="d-flex align-items-center">
-                <FontAwesomeIcon icon={faWallet} className="mr-2"/>
-                <p className="font-weight-semibold mb-0 ms-2">Total Income</p>
+                <p className="font-weight-semibold mb-0 ms-2"><MdAccountBalanceWallet className="fs-2 m-3 ico" />Total Income</p>
               </div>
               <p className="mb-0">₹{profit}</p>
             </div>
           </div>
         </div>
         <div className="mx-4">
+    
           <p className="font-weight-medium mb-2 ">My Referral Code</p>
           <div className="d-flex justify-content-between align-items-center custom-border bg-success-light rounded my-3 referral-code-box">
-            <p className="mb-0 ml-2">{referralCode}</p>
+            <p className="mb-0 ml-2">{url}</p>
             <button className="btn bg-primary text-black">Copy</button>
           </div>
+          
         </div>
         <div className="table-responsive mt-4">
+        <p className="font-weight-medium mb-2 mx-4">My Referrals</p>
           <table className="table table-striped">
-            <thead className="bg-gray-50">
+            <thead className="bg-gray-50 text-white ">
               <tr>
                 <th scope="col">User Id</th>
                 <th scope="col">Email</th>
                 <th scope="col">Plan</th>
               </tr>
             </thead>
-            <tbody>
+            <tbody >
+              
               {data.slice(1).map((row, i) => (
-                <tr key={i}>
-                  <td>{row.user_id}</td>
-                  <td>{row.email}</td>
-                  <td>{row.plan}</td>
+                <tr key={i} >
+                  <td className="text-white">{row.user_id}</td>
+                  <td className="text-white">{row.email}</td>
+                  <td className="text-white">{row.plan}</td>
                 </tr>
               ))}
             </tbody>
