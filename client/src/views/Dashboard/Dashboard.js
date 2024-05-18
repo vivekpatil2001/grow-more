@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
-import axios from "axios";
-import Cards from "../../components/Cards/Cards";
-import { faEnvelope, faSackDollar, faIdCard, faRecycle, faDollarSign } from '@fortawesome/free-solid-svg-icons';
+import { FontAwesomeIcon } from '@fortawesome/react-fontawesome';
+import { faBullhorn, faSackDollar, faIdCard, faRecycle, faDollarSign, faWallet } from '@fortawesome/free-solid-svg-icons';
+// import './Dashboard.css'; // Assuming you will create a Dashboard.css for custom styles
 
 function Dashboard() {
   const [data, setData] = useState([]);
@@ -40,19 +40,82 @@ function Dashboard() {
     
     getUserData();
   }, []);
+  
+  const referralCode = "ABC123XYZ";
+  const [seconds, setSeconds] = useState(3600); // Adjusted initial value for testing
+
+  useEffect(() => {
+    const intervalId = setInterval(() => {
+      setSeconds(prevSeconds => prevSeconds > 0 ? prevSeconds - 1 : 0);
+    }, 1000);
+
+    return () => clearInterval(intervalId);
+  }, []);
+
+  const formatTime = (seconds) => {
+    const h = Math.floor(seconds / 3600);
+    const m = Math.floor((seconds % 3600) / 60);
+    const s = seconds % 60;
+    return `${h}:${m < 10 ? '0' : ''}${m}:${s < 10 ? '0' : ''}${s}`;
+  };
 
   return (
-    <div className="bg-white text-black">
-      <div className="container-fluid py-8 px-4">
-        <div className="row row-cols-1 row-cols-sm-2 row-cols-lg-3 justify-content-center gap-4 mb-4">
-          <Cards icon={faSackDollar} name="Total Rpin Balance" money={balance} />
-          <Cards icon={faIdCard} name=" User ID" money={url} />
-          <Cards icon={faIdCard} name=" User" money={user} />
-          <Cards icon={faRecycle} name="Total Referrals" money={reffer} />
-          <Cards icon={faDollarSign} name="Total Income" money={profit} />
+    <div className="bg-white text-black dashboard-container">
+      <div className="container-fluid py-4">
+        {/* Announcement Box */}
+        <div className="row justify-content-center mb-4">
+          <div className="col-lg-10">
+            <div className="announcement-box border border-secondary rounded h3 p-2">
+              <strong>Announcement:</strong>
+              <p className="p-4">
+                This is an important announcement for all users.
+              </p>
+              <FontAwesomeIcon icon={faBullhorn} className="announcement-icon"/>
+            </div>
+          </div>
         </div>
-
-        <div className="table-responsive">
+        
+        {/* Main Content */}
+        <div className="row mb-4">
+          <div className="col-md-6 mb-4">
+            <div className="d-flex justify-content-between align-items-center border shadow rounded p-3 mb-2 balance-box">
+              <p className="font-weight-semibold mb-0">rPIN Balance</p>
+              <div className="d-flex align-items-center bg-success text-white rounded p-2">
+                <p className="mb-0 mr-2">Total</p>
+                <p className="mb-0">{balance}</p>
+              </div>
+            </div>
+            <div className="text-center mb-2">
+              <p className="font-weight-medium mb-1">Create ID will start in</p>
+              <p>{formatTime(seconds)}</p>
+            </div>
+            <div className="d-flex justify-content-between align-items-center border shadow bg-success-light rounded p-3 created-box">
+              <p className="font-weight-semibold mb-0">IDs Created Today</p>
+              <p className="mb-0">0</p>
+            </div>
+          </div>
+          <div className="col-md-6 mb-4">
+            <div className="d-flex justify-content-between align-items-center border shadow bg-success-light rounded p-3 mb-2 referral-box">
+              <p className="font-weight-semibold mb-0">Total Referrals</p>
+              <p className="mb-0">{reffer}</p>
+            </div>
+            <div className="d-flex justify-content-between align-items-center border shadow bg-success-light rounded p-3 income-box">
+              <div className="d-flex align-items-center">
+                <FontAwesomeIcon icon={faWallet} className="mr-2"/>
+                <p className="font-weight-semibold mb-0">Total Income</p>
+              </div>
+              <p className="mb-0">₹{profit}</p>
+            </div>
+          </div>
+        </div>
+        <div>
+          <p className="font-weight-medium mb-2">My Referral Code</p>
+          <div className="d-flex justify-content-between align-items-center border bg-success-light rounded p-2 referral-code-box">
+            <p className="mb-0 ml-2">{referralCode}</p>
+            <button className="btn btn-success text-white">Copy</button>
+          </div>
+        </div>
+        <div className="table-responsive mt-4">
           <table className="table table-striped">
             <thead className="bg-gray-50">
               <tr>

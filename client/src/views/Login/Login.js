@@ -37,10 +37,10 @@ const Home = () => {
   };
 
   return (
-    <div className="container py-5 ">
+    <div className="container py-5 mt-5  ">
       <div className="row justify-content-center">
-        <div className="col-md-6 col-lg-4 bg-light p-4 shadow-sm"> {/* Change the bg-white to bg-light or any other class for different background color */}
-          <div className="text-center mb-4">
+        <div className="col-md-6 col-lg-4 bg-light p-4 p-5 shadow-sm"> {/* Change the bg-white to bg-light or any other class for different background color */}
+          <div className="text-center mb-4 ">
             <h3 className="font-weight-bold mb-3">Registration</h3>
             <p className="text-muted">Welcome! Please enter your details.</p>
             <h6 className="text-danger">{message}</h6>
