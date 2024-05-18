@@ -13,16 +13,29 @@ color: white;
 }
 
 .announcement-box:hover{
-    border: 2px solid rgb(175, 2, 160);
+    border: 2px solid white
 }
 .custom-border {
     border: 1.5px solid blueviolet;
     height: 70px;
     padding: 0px 20px;
-    box-shadow: 1px 1px 5px  rgb(175, 2, 160) ;
+    box-shadow: 1px 1px 5px  white ;
 }
 
 .custom-border:hover{
      
     border: none;
+}
+.announcement{
+    margin-left: 300px;
+}
+.text{
+  font-size: 20px;
+  font-weight: 600;
+}
+.link{
+    font-weight: 400;
+}
+.sound{
+margin-top: -20;
 }
