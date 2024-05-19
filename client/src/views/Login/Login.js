@@ -2,11 +2,13 @@ import axios from 'axios';
 import { useState } from 'react';
 import { Link, Route, Routes } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
-import Dashboard from '../Dashboard/Dashboard';
+import '../Dashboard/Dashboard.css';
 // import Payment from '../../Razorpay/Payment';
 import Admin from '../Admin/Admin';
 // import PaymentSuccess from '../../Razorpay/PaymentSuccess';
 import { useNavigate } from 'react-router-dom';
+
+import glogo from "./glogo.png";
 import '../SignUp/SignUp.css'
 const Home = () => {
   const navigate = useNavigate(); 
@@ -37,10 +39,13 @@ const Home = () => {
   };
 
   return (
-    <div className="container mt-5 main  ">
-      <div className="row justify-content-center">
-        <div className="col-md-6 col-lg-4 bg-light p-4 p-5 shadow-sm"> {/* Change the bg-white to bg-light or any other class for different background color */}
+    <div className="container main d-flex flex-column justify-content-center align-items-center  ">
+    <div>     <img src={glogo} className="grow-logo position-static "></img></div>
+         
+      <div className="row justify-content-center w-100">
+        <div className="col-md-6 col-lg-4 bg-light rounded-5 p-5 shadow "> {/* Change the bg-white to bg-light or any other class for different background color */}
           <div className="text-center mb-4 ">
+    
             <h3 className="font-weight-bold mb-3">Login</h3>
             <p className="text-muted">Welcome! Please enter your details.</p>
             <h6 className="text-danger">{message}</h6>
@@ -79,14 +84,15 @@ const Home = () => {
             </div>
 
             <div className='d-flex w-100 justify-content-center '>
-            <Button type='submit' variant="outline-success" className='w-25 p-1 '>LogIn</Button>{' '}
+            <Button type='submit' variant="outline-success" className='w-25 p-1 '>LogIn</Button>{' '} 
             </div>
 
             <p className="text-muted text-center">
-              By creating an account you agree to our <br />
-              <a className="font-weight-bold" href="#">Terms of Service</a> and <a className="font-weight-bold" href="#">Privacy Policy</a>
+              If you are new User <a className="font-weight-bold" href="/signup">Register</a>
+             
             </p>
           </form>
+         
         </div>
       </div>
     </div>

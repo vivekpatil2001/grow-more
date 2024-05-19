@@ -8,6 +8,8 @@
     transition: transform 0.3s ease;
 }
 .navi{
-    background-color: rgb(192, 253, 220);
-    border-radius: 8px;
+background: transparent;
+} 
+body{
+    min-height: 110vh
 }
