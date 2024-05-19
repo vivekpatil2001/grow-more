@@ -61,10 +61,10 @@ function Admin() {
   }
   return (
     <div className="container text-center ">
-      <h2 className="text-white ">Admin Panel</h2>
+      <h2 className="text-success ">Admin Panel</h2>
 
       <Modal show={show} fullscreen={fullscreen} onHide={() => setShow(false)}>
-        <Modal.Header closeButton className="text-dark navi">
+        <Modal.Header closeButton className="text-dark  ">
           <Modal.Title>{user} Profile Details</Modal.Title>
         </Modal.Header>
         <Modal.Body className="">
@@ -75,7 +75,7 @@ function Admin() {
               <h4 className="text-dark">{user}</h4>
             </div>
             <Row className=" justify-content-md-around text-white g-3 d-flex flex-column flex-md-row ">
-              <Col xs lg="3" className=" p-4 rounded-3 mx-1 navi" >
+              <Col xs lg="3" className=" p-4 rounded-3 mx-1  " >
                 <Row className="g-2 justify-content-center text-center ">
                   <Col
                     variant="outline-dark"
@@ -94,7 +94,7 @@ function Admin() {
                 </Row>
               </Col>
              
-              <Col xs lg="3" className=" mx-1 p-4 rounded-3 navi ">
+              <Col xs lg="3" className=" mx-1 p-4 rounded-3   ">
                 <Row >
                   <Col
                     variant="outline-dark"
@@ -120,7 +120,7 @@ function Admin() {
                   </Col>
                 </Row>
               </Col>
-              <Col xs lg="3" className=" mx-1 p-4 rounded-3 navi ">
+              <Col xs lg="3" className=" mx-1 p-4 rounded-3   ">
                 <Row>
                   <Col
                     variant="outline-dark"
@@ -138,7 +138,7 @@ function Admin() {
                   </Col>
                 </Row>
               </Col>
-              <Col xs lg="3" className=" mx-1 p-4 rounded-3 navi ">
+              <Col xs lg="3" className=" mx-1 p-4 rounded-3   ">
                 <Row>
                   <Col
                     variant="outline-dark"
@@ -192,7 +192,7 @@ function Admin() {
 
       <div>
         <div>
-          <Navbar expand="lg" className="bg-body-tertiary navi">
+          <Navbar expand="lg" className="bg-body-tertiary  ">
             <Container fluid className="d-flex justify-content-around ">
               <Nav
                 className=" my-2 my-lg-0"
@@ -212,7 +212,7 @@ function Admin() {
                   variant="outline-dark"
                   className=" me-1  col-3 align-content-center justify-items-center rounded-circle "
                 >
-                  <Button variant="outline-dark" className="mx-5">
+                  <Button variant="outline-success" className="mx-5">
                     {" "}
                   <MdAccountBalanceWallet className="fs-4" />{" "}
                   </Button>
@@ -235,7 +235,7 @@ function Admin() {
           </Navbar>
         </div>
 
-        <div className="overflow-scroll overflow-y-scroll  fs-4 container navi mt-5">
+        <div className="overflow-scroll overflow-y-scroll table fs-4 container   mt-5">
           <table className="table text-dark mt-4 overflow-scroll overflow-y-scroll text-start  ">
             <thead className="bg-Red">
               <tr>
@@ -255,7 +255,7 @@ function Admin() {
                     <form onSubmit={handleSubmit}>
                       <button
                         type="submit"
-                        className="navi border-0 "
+                        className="navi border-0  "
                         onClick={() => {
                           setShow(true);
                           setFet(row.user_id);

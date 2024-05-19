@@ -6,6 +6,8 @@ import { FaCircleUser } from "react-icons/fa6";
 import { FaUserShield } from "react-icons/fa";
 import { HiUserGroup } from "react-icons/hi2";
 import { MdAccountBalanceWallet } from "react-icons/md";
+import Button from "react-bootstrap/Button";
+import "../Admin/Admin.css";
 import "./Dashboard.css"; // Assuming you will create a Dashboard.css for custom styles
 import anmt from "./announcement.png";
 import glogo from "./glogo.png";
@@ -74,23 +76,22 @@ function Dashboard() {
     <div className=" text-black text position-relative">
       <p className="grow-logo">
         <img src={glogo} alt="logo" className="grow-logo" />
-      </p><br/>
+      </p>
+      <br />
 
       <div className="container-fluid py-5 mt-5 ">
         {/* Announcement Box */}
         <div className="row justify-content-center mb-5  ">
-          <div className="col-lg-10">
-            <div className="announcement-box rounded" data-aos="zoom-in-down">
-              <h2>
-                <span className="answ">Announcement:</span>
-                {"     "}
-                {"   "} {"         "}
+            <div className=" announcement-box rounded d-flex flex-column justify-content-center ">
+              <div>
+                <span className="answ fs-3 ">Announcement:</span>
+
                 <img
                   src={anmt}
                   className="mx-4 link sound-image"
-                  height={"85vw"}
+                  height={"80vw"}
                 ></img>
-              </h2>
+               </div>
 
               <p className="">
                 This is an important announcement for all users.
@@ -101,7 +102,6 @@ function Dashboard() {
               </p>
 
               {/* <FontAwesomeIcon icon={faBullhorn} className="announcement-icon fs-3"/> */}
-            </div>
           </div>
         </div>
 
@@ -110,9 +110,12 @@ function Dashboard() {
           <div className="col-md-6 mb-4">
             <div className="d-flex justify-content-between align-items-center custom-border rounded ">
               <p className="font-weight-semibold mb-0 ">
-                <MdAccountBalanceWallet className="fs-2 m-3 ico" /> Balance
+                <Button variant="outline-success" className="mx-3">
+                  <MdAccountBalanceWallet className="fs-2 " />
+                </Button>
+                Balance
               </p>
-              <div className="d-flex align-items-center text-white rounded p-2 ">
+              <div className="d-flex align-items-center text-dark rounded p-2 ">
                 <p className="mb-0">{balance}</p>
               </div>
             </div>
@@ -122,9 +125,11 @@ function Dashboard() {
               </p>
             </div>
             <div className="d-flex justify-content-between align-items-center custom-border mb-5  bg-success-light rounded ">
-              <p className="font-weight-semibold mb-0">
+              <p className="font-weight-semibold mb-0 ">
                 {" "}
-                <FaCircleUser className="fs-2 m-3 ico" />
+                <Button variant="outline-success" className="mx-3">
+                  <FaCircleUser className="fs-2" />
+                </Button>
                 User
               </p>
               <p className="mb-0">{user}</p>
@@ -133,15 +138,20 @@ function Dashboard() {
           <div className="col-md-6 mb-4 ">
             <div className="d-flex justify-content-between align-items-center custom-border mb-4 bg-success-light rounded referral-box">
               <p className="font-weight-semibold mb-0">
-                <HiUserGroup className="fs-2 m-3 ico" />
+                <Button variant="outline-success" className="mx-3">
+                  <HiUserGroup className="fs-2" />
+                </Button>
                 Total Referrals
               </p>
               <p className="mb-0">{reffer}</p>
             </div>
             <div className="d-flex justify-content-between align-items-center custom-border mt-5 bg-success-light rounded   p-3 income-box">
               <div className="d-flex align-items-center">
-                <p className="font-weight-semibold mb-0 ms-2">
-                  <MdAccountBalanceWallet className="fs-2 m-3 ico" />
+                <p className="font-weight-semibold mb-0 w-75">
+                  <Button variant="outline-success" className="mx-3">
+                    {" "}
+                    <MdAccountBalanceWallet className="fs-2" />{" "}
+                  </Button>
                   Total Income
                 </p>
               </div>
@@ -153,13 +163,13 @@ function Dashboard() {
           <p className="font-weight-medium mb-2 ">My Referral Code</p>
           <div className="d-flex justify-content-between align-items-center custom-border bg-success-light rounded my-3 referral-code-box">
             <p className="mb-0 ml-2">{url}</p>
-            <button className="btn bg-primary text-black">Copy</button>
+            <Button variant="outline-warning text-dark">Copy</Button>{" "}
           </div>
         </div>
         <div className="table-responsive mt-4">
           <p className="font-weight-medium mb-2 mx-4">My Referrals</p>
           <table className="table table-striped">
-            <thead className="bg-gray-50 text-white ">
+            <thead className="bg-gray-50 text-dark ">
               <tr>
                 <th scope="col">User Id</th>
                 <th scope="col">Email</th>
@@ -169,9 +179,9 @@ function Dashboard() {
             <tbody>
               {data.slice(1).map((row, i) => (
                 <tr key={i}>
-                  <td className="text-white">{row.user_id}</td>
-                  <td className="text-white">{row.email}</td>
-                  <td className="text-white">{row.plan}</td>
+                  <td className="text-dark">{row.user_id}</td>
+                  <td className="text-dark">{row.email}</td>
+                  <td className="text-dark">{row.plan}</td>
                 </tr>
               ))}
             </tbody>
