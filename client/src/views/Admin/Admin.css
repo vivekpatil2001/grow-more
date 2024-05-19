@@ -1,7 +1,13 @@
 .btn:hover{
-        transform: scale(1.2); /* Change the scale factor as per your preference */
+        transform: scale(1.4); /* Change the scale factor as per your preference */
     
+        
 }
+
 .btn{
     transition: transform 0.3s ease;
+}
+.navi{
+    background-color: rgb(192, 253, 220);
+    border-radius: 8px;
 }

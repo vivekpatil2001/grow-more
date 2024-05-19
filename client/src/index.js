@@ -8,7 +8,7 @@ import Login from './views/Login/Login'
 import reportWebVitals from './reportWebVitals';
 import Dashboard from './views/Dashboard/Dashboard';
 import Admin from './views/Admin/Admin';
-
+import SignUp from './views/SignUp/SignUp'
 
 const root = ReactDOM.createRoot(document.getElementById('root'));
 
@@ -31,6 +31,10 @@ const router = createBrowserRouter(
   {
     path:"/admin",
     element:<Admin/>
+  },
+  {
+    path:"/signup",
+    element:<SignUp/>
   }
 ])
 
