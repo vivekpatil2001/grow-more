@@ -2,9 +2,7 @@ import React from 'react';
 import ReactDOM from 'react-dom/client';
 import {createBrowserRouter, RouterProvider} from 'react-router-dom';
 import './index.css';
-
 import Login from './views/Login/Login'
-
 import reportWebVitals from './reportWebVitals';
 import Dashboard from './views/Dashboard/Dashboard';
 import Admin from './views/Admin/Admin';
@@ -14,7 +12,6 @@ const root = ReactDOM.createRoot(document.getElementById('root'));
 
 const router = createBrowserRouter(
   [
- 
  
   {
     path: '/',

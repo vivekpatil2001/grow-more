@@ -7,7 +7,6 @@ import '../Dashboard/Dashboard.css';
 import Admin from '../Admin/Admin';
 // import PaymentSuccess from '../../Razorpay/PaymentSuccess';
 import { useNavigate } from 'react-router-dom';
-
 import glogo from "./glogo.png";
 import '../SignUp/SignUp.css'
 const Home = () => {
@@ -47,7 +46,7 @@ const Home = () => {
           <div className="text-center mb-4 ">
     
             <h3 className="font-weight-bold mb-3">Login</h3>
-            <p className="text-muted">Welcome! Please enter your details.</p>
+            <p className="text-muted w-auto ">Welcome! Please enter your details.</p>
             <h6 className="text-danger">{message}</h6>
           </div>
           
@@ -87,7 +86,7 @@ const Home = () => {
             <Button type='submit' variant="outline-success" className='w-25 p-1 '>LogIn</Button>{' '} 
             </div>
 
-            <p className="text-muted text-center">
+            <p className="text-muted text-center w-auto">
               If you are new User <a className="font-weight-bold" href="/signup">Register</a>
              
             </p>

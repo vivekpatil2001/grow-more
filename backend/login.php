@@ -11,16 +11,6 @@ switch ("$method") {
         $email = $userpostdata->email;
         $password = md5($userpostdata->password);
   
-        //    $refferal = $userpostdata->referral;
-        
-
-        // $user_id=uniqid();
-        // $profit = "00000";
-        // $balance = '00000';
-        //$bonus = (25*($balance-$profit))/100;
-        //$result1 = mysqli_query($db_conn,"INSERT INTO `users`(`user_id`,`username`,`email`,`balance`, `profit`, `refferal`, `password`) VALUES('$user_id','$username', '$email','$balance',$profit,'$refferal','$password')");
-       // $result2 = mysqli_query($db_conn,"UPDATE `users` SET profit=profit+$bonus ,balance=balance+$bonus WHERE user_id='$refferal'" )or die();
-
  $user = mysqli_query($db_conn, "SELECT email,user_id,role FROM users WHERE email='$email' AND password ='$password'");
  //print_r($user);
  if(mysqli_num_rows($user)>0){
@@ -40,7 +30,15 @@ switch ("$method") {
         ]);
     }
     }
-}
+} else{
+        echo json_encode([
+            'success' => false,
+            'message' => 'Login failed, please enter correct details.'
+        ]);
+        exit;
+    }
+
+
 $db_conn ->close();
 break;
 default: ;
