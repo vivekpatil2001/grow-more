@@ -67,11 +67,10 @@ function Home() {
                 <Card className="text-center mx-0 bg-white text-dark">
                   <Card.Header className="d-flex justify-content-between align-content-center ">
                     <div>
-                      <h4>Gold</h4>
-                      <h6>Most Popular </h6>
+                      <h5>Most Popular plan</h5>
                     </div>
                     <div className="px-1 rounded-2  perce">
-                      <h2 className="text-success ">25%</h2>
+                      <h3 className="text-success ">75%</h3>
                       <p className="fs-6">Return</p>
                     </div>
                   </Card.Header>
