@@ -36,7 +36,7 @@ function Admin() {
       const formData=JSON.parse(storedData)[1]
       const reqData = await fetch("http://localhost/growmore/admin.php/"+formData);
       const resData = await reqData.json();
-      setAdmin(resData[0].email);
+      setAdmin(resData[0].username);
       setCmpbal(resData[0].cmp);
       setData(resData);
     };
@@ -50,7 +50,7 @@ function Admin() {
     setUrl(pop[0].user_id);
     setBalance(pop[0].balance);
     setProfit(pop[0].profit);
-    setUser(pop[0].email);
+    setUser(pop[0].username);
     setResult(pop[1].result);
     setClient(pop);
   };
@@ -63,25 +63,25 @@ function Admin() {
     <div className="container text-center ">
       <h2 className="text-success ">Admin Panel</h2>
 
-      <Modal show={show} fullscreen={fullscreen} onHide={() => setShow(false)}>
-        <Modal.Header closeButton className="text-dark  ">
+      <Modal show={show} fullscreen={fullscreen} onHide={() => setShow(false)} >
+        <Modal.Header closeButton className="text-success">
           <Modal.Title>{user} Profile Details</Modal.Title>
         </Modal.Header>
-        <Modal.Body className="">
+        <Modal.Body className="pop">
           <Container className="mt-5">
             <h2 className="text-dark m-5"> Dashboard</h2>
             <div className="d-flex flex-column p-sm-2  me-3 align-items-center ">
-              <FaCircleUser className="fs-1 text-dark mx-4" />
+              <FaCircleUser className="fs-1 text-success mx-4" />
               <h4 className="text-dark">{user}</h4>
             </div>
             <Row className=" justify-content-md-around text-white g-3 d-flex flex-column flex-md-row ">
               <Col xs lg="3" className=" p-4 rounded-3 mx-1  " >
                 <Row className="g-2 justify-content-center text-center ">
                   <Col
-                    variant="outline-dark"
+                    variant="outline-success"
                     className=" mx-2 col-3 align-content-center  me-3 justify-items-center rounded-circle "
                   >
-                    <Button variant="outline-dark">
+                    <Button variant="outline-success">
                       {" "}
                       <FaUserShield className="fs-3" />{" "}
                     </Button>
@@ -97,10 +97,10 @@ function Admin() {
               <Col xs lg="3" className=" mx-1 p-4 rounded-3   ">
                 <Row >
                   <Col
-                    variant="outline-dark"
+                    variant="outline-success"
                     className=" col-3  mx-2 align-content-center me-3 justify-items-center rounded-circle "
                   >
-                    <Button variant="outline-dark">
+                    <Button variant="outline-success">
                       {" "}
                       <HiUserGroup className="fs-3" />{" "}
                     </Button>
@@ -123,10 +123,10 @@ function Admin() {
               <Col xs lg="3" className=" mx-1 p-4 rounded-3   ">
                 <Row>
                   <Col
-                    variant="outline-dark"
+                    variant="outline-success"
                     className=" col-3  mx-2 align-content-center me-3 justify-items-center rounded-circle "
                   >
-                    <Button variant="outline-dark">
+                    <Button variant="outline-success">
                       {" "}
                       <MdAccountBalanceWallet className="fs-3" />{" "}
                     </Button>
@@ -141,10 +141,10 @@ function Admin() {
               <Col xs lg="3" className=" mx-1 p-4 rounded-3   ">
                 <Row>
                   <Col
-                    variant="outline-dark"
+                    variant="outline-success"
                     className=" col-3  mx-2 align-content-center me-3 justify-items-center rounded-circle "
                   >
-                    <Button variant="outline-dark">
+                    <Button variant="outline-success">
                       {" "}
                       <MdAccountBalanceWallet className="fs-3" />{" "}
                     </Button>
@@ -161,30 +161,48 @@ function Admin() {
           <div className="container">
             <h2 className="text-dark mx-5">Reffer to</h2>
             <div>
-              <div className="overflow-scroll overflow-y-scroll  fs-4 container">
-                <table className="table text-dark  mt-4 ">
-                  <thead className="bg-Red">
-                    <tr>
-                      <th scope="col">User_Id</th>
-                      <th scope="col">Email</th>
-                      <th scope="col">Plan</th>
-                      
-                    </tr>
-                  </thead>
-                  <tbody>
-                    {client.slice(1).map((row, index) => (
-                      <tr key={index}>
-                        <td>
-                        {row.user_id}       
-                        </td>
-                        <td>{row.email}</td>
-                        <td>{row.plan}</td>
-                  
-                      </tr>
-                    ))}
-                  </tbody>
-                </table>
-              </div>
+            <div className="overflow-scroll overflow-y-scroll table fs-4 container   mt-5">
+          <table className="table text-dark mt-4 overflow-scroll overflow-y-scroll text-start  ">
+            <thead className="bg-Red">
+              <tr>
+                <th scope="col">User Id</th>
+                <th scope="col">Username</th>
+                <th scope="col">User Email</th>
+                <th scope="col">Plan</th>
+            
+              </tr>
+            </thead>
+            <tbody>
+              {client.slice(1).map((row, index) => (
+                <tr key={index}>
+                  <td>
+                    <form onSubmit={handleSubmit}>
+                      <button
+                        type="submit"
+                        className="navi border-0  "
+                        onClick={() => {
+                          setShow(true);
+                          setFet(row.user_id);
+                        }}
+                      >
+                        <img
+                          src={Profile}
+                          alt=""
+                          width={"8%"}
+                          className="me-2 rounded-circle border-2 border border-success btn p-0"
+                        ></img>
+                        {row.user_id}
+                      </button>
+                    </form>
+                  </td>
+                  <td>{row.username}</td>
+                  <td>{row.email}</td>
+                  <td>{row.plan}</td>
+                </tr>
+              ))}
+            </tbody>
+          </table>
+        </div>
             </div>
           </div>
         </Modal.Body>
@@ -209,7 +227,7 @@ function Admin() {
 
               <Row className="g-2">
                 <Col
-                  variant="outline-dark"
+                  variant="outline-success"
                   className=" me-1  col-3 align-content-center justify-items-center rounded-circle "
                 >
                   <Button variant="outline-success" className="mx-5">
@@ -229,7 +247,7 @@ function Admin() {
                   className="me-2"
                   aria-label="Search"
                 />
-                <Button variant="outline-dark">Search</Button>
+                <Button variant="outline-success">Search</Button>
               </Form> */}
             </Container>
           </Navbar>
@@ -240,6 +258,7 @@ function Admin() {
             <thead className="bg-Red">
               <tr>
                 <th scope="col">User Id</th>
+                <th scope="col">Username</th>
                 <th scope="col">User Email</th>
                 <th scope="col">Plan</th>
                 <th scope="col">Amount</th>
@@ -271,6 +290,7 @@ function Admin() {
                       </button>
                     </form>
                   </td>
+                  <td>{row.username}</td>
                   <td>{row.email}</td>
                   <td>{row.plan}</td>
                   <td>{row.balance}</td>

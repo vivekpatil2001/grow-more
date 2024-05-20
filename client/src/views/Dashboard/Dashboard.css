@@ -5,7 +5,6 @@
     border: 2px solid rgb(0, 148, 254);
     box-shadow: 1px 1px 5px  rgb(0, 148, 254);
     padding: 20px;
-    width: 370px;
 }
 body{
     height: auto;
@@ -38,10 +37,11 @@ body{
 .answ{
     color: rgb(20, 198, 20);
 }
-.grow-logo{
+.grow-logo {
     height: 150px;
-    position: absolute;
-    
+    padding:5px;
+    margin-top: 23px;
+    margin-bottom: 10px;
 }
 .grow-logos{
     padding: 20px;
@@ -49,8 +49,9 @@ body{
     position: absolute;
     margin-left: 200px;
 }
-p{
-width: 65%;
+.pop{
+    background: linear-gradient(174deg, rgb(197, 255, 215) 0%, rgba(255,255,255,1) 51%, rgb(255, 240, 196) 100%);
+    background-repeat: no-repeat;
 }
 
 @media (max-width:368px) {

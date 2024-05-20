@@ -1,20 +1,22 @@
 import React, { useEffect, useState } from "react";
 import Aos from "aos";
-import { FontAwesomeIcon } from "@fortawesome/react-fontawesome";
 //import { faBullhorn, faSackDollar, faIdCard, faRecycle, faDollarSign, faWallet } from '@fortawesome/free-solid-svg-icons';
 import { FaCircleUser } from "react-icons/fa6";
-import { FaUserShield } from "react-icons/fa";
 import { HiUserGroup } from "react-icons/hi2";
 import { MdAccountBalanceWallet } from "react-icons/md";
 import Button from "react-bootstrap/Button";
 import "../Admin/Admin.css";
 import "./Dashboard.css"; // Assuming you will create a Dashboard.css for custom styles
 import anmt from "./announcement.png";
-import glogo from "./glogo.png";
+import glogo from "../glogo.png";
+import { FaCopy } from "react-icons/fa6";
+import Toast from 'react-bootstrap/Toast';
 function Dashboard() {
   const [data, setData] = useState([]);
+  const [show, setShow] = useState(false);
   const [url, setUrl] = useState("");
   const [user, setUser] = useState("");
+  const [email, setEmail] = useState("");
   const [balance, setBalance] = useState("");
   const [profit, setProfit] = useState("");
   const [reffer, setReffer] = useState("");
@@ -35,7 +37,8 @@ function Dashboard() {
       if (resData) {
         setUrl(resData[0].user_id);
         setBalance(resData[0].balance);
-        setUser(resData[0].email);
+        setUser(resData[0].username);
+        setEmail(resData[0].email);
         setProfit(resData[0].profit);
 
         if (resData[1].result) {
@@ -74,30 +77,34 @@ function Dashboard() {
 
   return (
     <div className=" text-black text position-relative">
-      <p className="grow-logo">
+      <div className="d-flex container-fluid justify-content-center "> 
+
         <img src={glogo} alt="logo" className="grow-logo" />
-      </p>
+    
+      </div>
+
       <br />
 
-      <div className="container-fluid py-5 mt-5 ">
+      <div className="container-fluid">
         {/* Announcement Box */}
-        <div className="row justify-content-center mb-5  ">
-            <div className=" announcement-box rounded d-flex flex-column justify-content-center ">
+        <div className="justify-content-center mb-5  ">
+            <div className="w-75 announcement-box rounded d-flex flex-column text-center  justify-content-center overflow-hidden">
               <div>
-                <span className="answ fs-3 ">Announcement:</span>
-
+                <span className="answ fs-3 ">Announcement:
                 <img
                   src={anmt}
-                  className="mx-4 link sound-image"
-                  height={"80vw"}
-                ></img>
+                  className="link sound-image"
+                  height={"65vw"}
+                  alt=''
+                ></img></span>
+
                </div>
 
-              <p className="">
+              <p>
                 This is an important announcement for all users.
                 <br />
-                <a href="https://t.me/big_bull_refer_and_earn" target="/blank">
-                  https://t.me/big_bull_refer_and_earn
+                <a href="https://t.me/growmore_refer_and_earn" target="/blank">
+          https://t.me/growmore_refer_and_earn
                 </a>
               </p>
 
@@ -116,7 +123,7 @@ function Dashboard() {
                 Balance
               </p>
               <div className="d-flex align-items-center text-dark rounded p-2 ">
-                <p className="mb-0">{balance}</p>
+                <p className="mb-0">{balance}₹</p>
               </div>
             </div>
             <div className="text-center mb-2">
@@ -147,7 +154,7 @@ function Dashboard() {
             </div>
             <div className="d-flex justify-content-between align-items-center custom-border mt-5 bg-success-light rounded   p-3 income-box">
               <div className="d-flex align-items-center">
-                <p className="font-weight-semibold mb-0 w-75">
+                <p className="font-weight-semibold mb-0">
                   <Button variant="outline-success" className="mx-3">
                     {" "}
                     <MdAccountBalanceWallet className="fs-2" />{" "}
@@ -155,16 +162,19 @@ function Dashboard() {
                   Total Income
                 </p>
               </div>
-              <p className="mb-0">₹{profit}</p>
+              <p className="mb-0">{profit}₹</p>
             </div>
           </div>
         </div>
         <div className="mx-4">
           <p className="font-weight-medium mb-2 ">My Referral Code</p>
-          <div className="d-flex justify-content-between align-items-center custom-border bg-success-light rounded my-3 referral-code-box">
-            <p className="mb-0 ml-2">{url}</p>
-            <Button variant="outline-warning text-dark">Copy</Button>{" "}
-          </div>
+          <div className="container w-100 p-5 align-items-center d-flex position-relative ">
+        <input type="url" className="w-75 fs-6 mx-1 rounded-2 custom-border  " value={url}></input>  
+         <Button variant="outline-warning" className="m-1" onClick={() => {navigator.clipboard.writeText(url); setShow(true) }}><FaCopy/></Button>
+        <Toast className=" w-auto " onClose={() => setShow(false)} show={show} delay={3000} autohide>
+          <Toast.Body>Link Copy</Toast.Body>  
+        </Toast>
+      </div>
         </div>
         <div className="table-responsive mt-4">
           <p className="font-weight-medium mb-2 mx-4">My Referrals</p>
@@ -172,6 +182,7 @@ function Dashboard() {
             <thead className="bg-gray-50 text-dark ">
               <tr>
                 <th scope="col">User Id</th>
+                <th scope="col">Username</th>
                 <th scope="col">Email</th>
                 <th scope="col">Plan</th>
               </tr>
@@ -180,6 +191,7 @@ function Dashboard() {
               {data.slice(1).map((row, i) => (
                 <tr key={i}>
                   <td className="text-dark">{row.user_id}</td>
+                  <td className="text-dark">{row.username}</td>
                   <td className="text-dark">{row.email}</td>
                   <td className="text-dark">{row.plan}</td>
                 </tr>
