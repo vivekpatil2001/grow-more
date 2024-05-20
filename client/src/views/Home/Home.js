@@ -12,8 +12,11 @@ import { useNavigate } from 'react-router-dom';
 function Home() {
     const navigate = useNavigate();
     const login=()=>{
-        navigate('/signup')
+        navigate('/login')
     }
+    const signUp=()=>{
+      navigate('/signup')
+  }
   return (
     <div>
         <div className=' container-fluid d-flex justify-content-between '>
@@ -67,11 +70,10 @@ function Home() {
                 <Card className="text-center mx-0 bg-white text-dark">
                   <Card.Header className="d-flex justify-content-between align-content-center ">
                     <div>
-                      <h4>Gold</h4>
-                      <h6>Most Popular </h6>
+                      <h5>Most Popular plan</h5>
                     </div>
                     <div className="px-1 rounded-2  perce">
-                      <h2 className="text-success ">25%</h2>
+                      <h3 className="text-success ">75%</h3>
                       <p className="fs-6">Return</p>
                     </div>
                   </Card.Header>
@@ -97,10 +99,7 @@ function Home() {
                       type="button"
                       variant="success"
                       className="btn btn-success"
-                      data-bs-toggle="modal"
-                      data-bs-target="#exampleModal"
-                      value='2000'
-                      name="Gold"
+                      onClick={()=>signUp()}
                     >
                       Invest Now
                     </button>
