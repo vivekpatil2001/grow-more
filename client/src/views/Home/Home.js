@@ -12,8 +12,11 @@ import { useNavigate } from 'react-router-dom';
 function Home() {
     const navigate = useNavigate();
     const login=()=>{
-        navigate('/signup')
+        navigate('/login')
     }
+    const signUp=()=>{
+      navigate('/signup')
+  }
   return (
     <div>
         <div className=' container-fluid d-flex justify-content-between '>
@@ -96,10 +99,7 @@ function Home() {
                       type="button"
                       variant="success"
                       className="btn btn-success"
-                      data-bs-toggle="modal"
-                      data-bs-target="#exampleModal"
-                      value='2000'
-                      name="Gold"
+                      onClick={()=>signUp()}
                     >
                       Invest Now
                     </button>
