@@ -5,7 +5,8 @@ import { useNavigate } from 'react-router-dom';
 import Button from 'react-bootstrap/Button';
 import '../SignUp/SignUp.css'
 
-import glogo from "./glogo.png";
+
+import glogo from "../glogo.png";
 function SignUp() {
     const navigate = useNavigate(); 
   const [message, setMessage] = useState('');
@@ -36,7 +37,7 @@ function SignUp() {
 
   return (
     <div className="container  d-flex flex-column justify-content-center align-items-center  ">
-        <div>     <img src={glogo} alt='' className="grow-logo position-static "></img></div>
+        <div>     <img src={glogo} alt='' className="grow-logo "></img></div>
       <div className="row justify-content-center w-100  ">
         <div className="col-md-6 col-lg-4 bg-light p-3 m-4 shadow-sm rounded-4" > {/* Change the bg-white to bg-light or any other class for different background color */}
           <div className="text-center mb-4 ">

@@ -7,7 +7,7 @@ import '../Dashboard/Dashboard.css';
 import Admin from '../Admin/Admin';
 // import PaymentSuccess from '../../Razorpay/PaymentSuccess';
 import { useNavigate } from 'react-router-dom';
-import glogo from "./glogo.png";
+import glogo from "../glogo.png";
 import '../SignUp/SignUp.css'
 const Home = () => {
   const navigate = useNavigate(); 

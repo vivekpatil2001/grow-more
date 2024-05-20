@@ -8,8 +8,7 @@ import Button from "react-bootstrap/Button";
 import "../Admin/Admin.css";
 import "./Dashboard.css"; // Assuming you will create a Dashboard.css for custom styles
 import anmt from "./announcement.png";
-import glogo from "./glogo.png";
-
+import glogo from "../glogo.png";
 import { FaCopy } from "react-icons/fa6";
 import Toast from 'react-bootstrap/Toast';
 function Dashboard() {
@@ -88,23 +87,24 @@ function Dashboard() {
 
       <div className="container-fluid">
         {/* Announcement Box */}
-        <div className="row justify-content-center mb-5  ">
-            <div className=" announcement-box rounded d-flex flex-column justify-content-center ">
+        <div className="justify-content-center mb-5  ">
+            <div className="w-75 announcement-box rounded d-flex flex-column text-center  justify-content-center overflow-hidden">
               <div>
-                <span className="answ fs-3 ">Announcement:</span>
-
+                <span className="answ fs-3 ">Announcement:
                 <img
                   src={anmt}
-                  className="mx-4 link sound-image"
-                  height={"80vw"}
-                ></img>
+                  className="link sound-image"
+                  height={"65vw"}
+                  alt=''
+                ></img></span>
+
                </div>
 
               <p>
                 This is an important announcement for all users.
                 <br />
                 <a href="https://t.me/growmore_refer_and_earn" target="/blank">
-                https://t.me/growmore_refer_and_earn
+          https://t.me/growmore_refer_and_earn
                 </a>
               </p>
 
@@ -123,7 +123,7 @@ function Dashboard() {
                 Balance
               </p>
               <div className="d-flex align-items-center text-dark rounded p-2 ">
-                <p className="mb-0">{balance}</p>
+                <p className="mb-0">{balance}₹</p>
               </div>
             </div>
             <div className="text-center mb-2">
