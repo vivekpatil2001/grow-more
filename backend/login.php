@@ -11,24 +11,34 @@ switch ("$method") {
         $email = $userpostdata->email;
         $password = md5($userpostdata->password);
   
- $user = mysqli_query($db_conn, "SELECT email,user_id,role FROM users WHERE email='$email' AND password ='$password'");
+ $user = mysqli_query($db_conn, "SELECT email,user_id,role,payment FROM users WHERE email='$email' AND password ='$password'");
  //print_r($user);
+
  if(mysqli_num_rows($user)>0){
     while($row=mysqli_fetch_array($user)){ 
-       $client=$row['user_id'];
-    //    $_SESSION['invester'] = $client;
-    try {
-        echo json_encode([
-            'success' => true,
-            'data' => $row,
-            'message' => 'Successfully logged in user redirecting.....'
-        ]);
-    } catch (Exception $e) {
-        echo json_encode([
-            'success' => false,
-            'message' => $e->getMessage()."Enter correct detils"
-        ]);
-    }
+        if($row['payment']==""){
+            echo json_encode([
+                'success' => false,
+                'message' => 'Buy A Plan .'
+            ]);
+            exit;
+        }else{
+            $client=$row['user_id'];
+            //    $_SESSION['invester'] = $client;
+            try {
+                echo json_encode([
+                    'success' => true,
+                    'data' => $row,
+                    'message' => 'Successfully logged in user redirecting.....'
+                ]);
+            } catch (Exception $e) {
+                echo json_encode([
+                    'success' => false,
+                    'message' => $e->getMessage()."Enter correct detils"
+                ]);
+            }
+        }
+
     }
 } else{
         echo json_encode([
