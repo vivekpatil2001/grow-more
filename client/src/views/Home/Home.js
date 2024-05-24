@@ -88,7 +88,7 @@ function Home() {
                   </p>
                   <p>
                     <IoMdCheckmarkCircleOutline />
-                    Repeatable -- 10 Times
+                    Repeatable -- Unlimited
                   </p>
 
                   <h3 className="text-success">2000₹</h3>
